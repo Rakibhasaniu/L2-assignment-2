@@ -44,8 +44,8 @@ For product add request , user should follow the given stucture.
 
 Ex:
 
-{
-"productName": "Product A",
-"price": 19.99,
-"quantity": 2
-}
+    {
+        "productName": "Product A",
+        "price": 19.99,
+        "quantity": 2
+    }
