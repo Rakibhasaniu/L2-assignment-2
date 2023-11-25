@@ -77,7 +77,7 @@ const getOneUser = async (req: Request, res: Response) => {
 const updateOneUser = async (req: Request, res: Response) => {
   try {
     const userId = req.params.userId
-    const updatedData = req.body.user
+    const updatedData = req.body
     const { error, value } = userValidatorSchema.validate(updatedData)
     if (error) {
       res.json({
