@@ -35,6 +35,18 @@ for example:
 
 I use static methods to check weather an user exisist or not.
 
+User Routes:
+
+1. GET(http://localhost:3000/api/users) : get all users
+
+2. GET(http://localhost:3000/api/users/:userId) : get one user by userId
+
+3. POST(http://localhost:3000/api/users) : create new user
+
+4. PUT(http://localhost:3000/api/users/:userId) : update one user by userId
+
+5. DELETE(http://localhost:3000/api/users/:userId) : delete one user by userId
+
 For Bonus marks , I create order module and orders collection separate from user modules and collection.
 
 In my app, users who are already in user collection can add new product to their orders array.
@@ -49,3 +61,11 @@ Ex:
         "price": 19.99,
         "quantity": 2
     }
+
+Order Routes: Orders Routes are written in user.routes.ts.
+
+1. PUT(http://localhost:3000/api/users/:userId/orders) : add new product
+
+2. GET(http://localhost:3000/api/users/:userId/orders) : get all orders of user by userId
+
+3. GET(http://localhost:3000/api/users/:userId/orders/total-price) :get totalprice of ordered products of an user
