@@ -1,30 +1,30 @@
-import User from "../userModule/user.schema&model";
-import { TOrder, TOrders } from "./orders.interface";
-import Order from "./orders.schema$model";
+import User from '../userModule/user.schema&model'
+import { TOrder, TOrders } from './order.interface'
+import Order from './order.schema$model'
 
 const addNewProductInToDB = async (userId: number, order: TOrder) => {
   if (await User.isUserExsistById(userId)) {
     if (await Order.isUserExsistById(userId)) {
-      order.orderTotal = order.price * order.quantity;
+      order.orderTotal = order.price * order.quantity
       const result = await Order.updateOne(
         { userId },
-        { $push: { orders: order } }
-      );
-      return result;
+        { $push: { orders: order } },
+      )
+      return result
     } else {
-      order.orderTotal = order.price * order.quantity;
+      order.orderTotal = order.price * order.quantity
       const initialdoc: TOrders = {
         userId: userId,
         orders: [order],
-      };
+      }
 
-      const result = await Order.create(initialdoc);
-      return result;
+      const result = await Order.create(initialdoc)
+      return result
     }
   } else {
-    return null;
+    return null
   }
-};
+}
 
 const getAllOrders = async (userId: number) => {
   if (await User.isUserExsistById(userId)) {
@@ -42,15 +42,15 @@ const getAllOrders = async (userId: number) => {
             __v: 0,
           },
         },
-      ]);
-      return result[0];
+      ])
+      return result[0]
     } else {
-      return null;
+      return null
     }
   } else {
-    return null;
+    return null
   }
-};
+}
 
 const totalpriceCount = async (userId: number) => {
   if (await User.isUserExsistById(userId)) {
@@ -58,7 +58,7 @@ const totalpriceCount = async (userId: number) => {
       const result = await Order.aggregate([
         { $match: { userId: userId } },
         {
-          $addFields: { totalPrice: { $sum: "$orders.orderTotal" } },
+          $addFields: { totalPrice: { $sum: '$orders.orderTotal' } },
         },
         {
           $project: {
@@ -68,17 +68,17 @@ const totalpriceCount = async (userId: number) => {
             __v: 0,
           },
         },
-      ]);
-      return result[0];
+      ])
+      return result[0]
     } else {
-      return null;
+      return null
     }
   } else {
-    return null;
+    return null
   }
-};
+}
 export const orderServices = {
   addNewProductInToDB,
   getAllOrders,
   totalpriceCount,
-};
+}

@@ -1,6 +1,6 @@
 import express from 'express'
 import { userControllers } from './user.controller'
-import { ordersController } from '../orderModule/orders.controller'
+import { orderController } from '../ordersModule/order.controller'
 
 const router = express.Router()
 
@@ -10,8 +10,8 @@ router.get('/:userId', userControllers.getOneUser)
 router.put('/:userId', userControllers.updateOneUser)
 router.delete('/:userId', userControllers.deleteOneUser)
 
-router.put('/:userId/orders', ordersController.addNewProduct)
-router.get('/:userId/orders', ordersController.getAllProduct)
-router.get('/:userId/orders/total-price', ordersController.totalpriceCount)
+router.put('/:userId/orders', orderController.addNewProduct)
+router.get('/:userId/orders', orderController.getAllProduct)
+router.get('/:userId/orders/total-price', orderController.totalpriceCount)
 
 export const userRoute = router
