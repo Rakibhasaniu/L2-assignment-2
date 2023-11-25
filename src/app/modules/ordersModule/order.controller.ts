@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { orderServices } from './order.services'
 
 const addNewProduct = async (req: Request, res: Response) => {
-  const order = req.body.order
+  const order = req.body
   const userId = req.params.userId
   const result = await orderServices.addNewProductInToDB(
     parseInt(userId),
